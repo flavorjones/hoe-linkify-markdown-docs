@@ -7,3 +7,5 @@ class Hoe
     # Your code goes here...
   end
 end
+
+require "hoe/markdown/util"
