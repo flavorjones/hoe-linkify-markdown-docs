@@ -1,0 +1,1 @@
+# Hoe::Markdown CHANGELOG
