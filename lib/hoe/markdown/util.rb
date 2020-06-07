@@ -14,6 +14,9 @@ class Hoe
 
       # see https://github.com/shinnn/github-username-regex
       GITHUB_USER_REGEX = %r{
+        # not obviously part of an email address
+        (?<![[:alnum:]])
+
         # username, like "@flavorjones"
         @([[:alnum:]](?:[[:alnum:]]|-(?=[[:alnum:]])){0,38})
 

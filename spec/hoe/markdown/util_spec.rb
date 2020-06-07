@@ -124,5 +124,23 @@ RSpec.describe Hoe::Markdown::Util do
 
       expect(Hoe::Markdown::Util.linkify_github_usernames(markdown)).to eq(markdown)
     end
+
+    it "does not linkify email addresses" do
+      markdown = <<~MD
+        leading
+        the project email list if loofah-talk@googlegroups.com so ping me there
+        my github username is @flavorjones if you need it
+        trailing
+      MD
+
+      expected = <<~MD
+        leading
+        the project email list if loofah-talk@googlegroups.com so ping me there
+        my github username is [@flavorjones](https://github.com/flavorjones) if you need it
+        trailing
+      MD
+
+      expect(Hoe::Markdown::Util.linkify_github_usernames(markdown)).to eq(expected)
+    end
   end
 end
