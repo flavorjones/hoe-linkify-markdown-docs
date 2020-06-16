@@ -102,12 +102,14 @@ RSpec.describe Hoe::Markdown::Util do
       markdown = <<~MD
         leading
         foo @flavorjones and @asdfqwer bar
+        foo @y-yagi bar
         trailing
       MD
 
       expected = <<~MD
         leading
         foo [@flavorjones](https://github.com/flavorjones) and [@asdfqwer](https://github.com/asdfqwer) bar
+        foo [@y-yagi](https://github.com/y-yagi) bar
         trailing
       MD
 
@@ -119,6 +121,7 @@ RSpec.describe Hoe::Markdown::Util do
         leading
         don't you know [@flavorjones](https://mike.daless.io/)?
         how about [@asdfqwer][]?
+        or [@y-yagi](https://github.com/y-yagi)?
         trailing
       MD
 

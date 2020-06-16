@@ -24,7 +24,7 @@ class Hoe
         (?!\][\(\[])
 
         # don't truncate the username to meet the previous negative lookahead
-        (?![[[:alnum:]]])
+        (?![[[:alnum:]]-])
       }x
 
       def self.linkify_github_issues(markdown, issues_uri)
