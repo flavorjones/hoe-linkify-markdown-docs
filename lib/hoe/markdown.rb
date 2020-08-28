@@ -1,5 +1,9 @@
+require "rake"
+
 class Hoe
   module Markdown
+    include ::Rake::DSL
+
     #
     #  Optional: used to specify which markdown files to linkify. [default: any markdown files found in `files`].
     #
@@ -35,8 +39,7 @@ class Hoe
 
           desc "hyperlink github issues and usernames in #{mdfile_name}"
           task task_name do
-            puts "linkifying #{mdfile_path} ..."
-            markdown = File.read(mdfile_path)
+            original_markdown = markdown = File.read(mdfile_path)
 
             markdown = Hoe::Markdown::Util.linkify_github_usernames(markdown)
             if spec.metadata["bug_tracker_uri"]
@@ -45,7 +48,12 @@ class Hoe
               warn "Spec metadata URI for 'bugs' is missing, skipping linkification of issues and pull requests"
             end
 
-            File.open(mdfile_path, "w") { |f| f.write markdown }
+            if markdown == original_markdown
+              puts "markdown:linkify: no changes to #{mdfile_path}"
+            else
+              puts "markdown:linkify: updating #{mdfile_path}"
+              File.open(mdfile_path, "w") { |f| f.write markdown }
+            end
           end
           linkify_tasks << "#{namespace_name}:#{task_name}"
         end
@@ -59,3 +67,4 @@ end
 
 require "hoe/markdown/version"
 require "hoe/markdown/util"
+require "hoe/markdown/standalone"
