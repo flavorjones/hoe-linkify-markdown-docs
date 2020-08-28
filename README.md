@@ -2,6 +2,8 @@
 
 Hoe::Markdown is a [Hoe](https://www.zenspider.com/projects/hoe.html) plugin to help manage your project's markdown files. It's intended for gem maintainers, but the underlying library of markdown manipulation methods might be generally useful.
 
+Hoe::Markdown::Standalone can be used without Hoe.
+
 
 ## Installation
 
@@ -20,7 +22,7 @@ Or install it yourself as:
     $ gem install hoe-markdown
 
 
-## Usage
+## Usage with Hoe
 
 In your Rakefile:
 
@@ -29,7 +31,6 @@ Hoe::plugin :markdown
 ```
 
 Rake tasks are exposed under the `markdown` namespace.
-
 
 ### Choosing your markdown files correctly
 
@@ -87,6 +88,18 @@ Thanks, [@hobbes](https://github.com/hobbes)!
 
 Feature: Finagle the sprocket. See [#456](https://github.com/cogswellcogs/sprocketkiller/issues/456)
 ```
+
+## Usage without Hoe
+
+In your Rakefile:
+
+``` ruby
+require "hoe/markdown"
+Hoe::Markdown::Standalone.new("gemname").define_markdown_tasks
+```
+
+This will attempt to read your gemspec from `#{gemname}.gemspec`, and then the same rake tasks described above are created and behave the same way.
+
 
 ## Contributing
 
