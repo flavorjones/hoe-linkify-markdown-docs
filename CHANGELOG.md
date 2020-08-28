@@ -1,5 +1,12 @@
 # Hoe::Markdown CHANGELOG
 
+## v1.3.0 / 2020-08-28
+
+Feature:
+
+- Hoe::Markdown::Standalone allows use of these rake tasks outside of Hoe
+
+
 ## v1.2.0 / 2020-06-16
 
 Fix:
