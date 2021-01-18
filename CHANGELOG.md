@@ -1,5 +1,12 @@
 # Hoe::Markdown CHANGELOG
 
+## v1.4.0 / 2021-01-18
+
+Feature:
+
+- Hoe::Markdown::Standalone allows additional non-gemspec files to be specified
+
+
 ## v1.3.0 / 2020-08-28
 
 Feature:
