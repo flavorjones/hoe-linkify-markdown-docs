@@ -25,8 +25,9 @@ class Hoe
       end
     end
 
-    def define_markdown_tasks
+    def define_markdown_tasks(*additional_files)
       @markdown_linkify_files ||= default_markdown_linkify_files
+      @markdown_linkify_files = @markdown_linkify_files.append(*additional_files).uniq
       return if markdown_linkify_files.empty?
 
       namespace_name = "markdown:linkify"

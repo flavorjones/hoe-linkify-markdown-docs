@@ -98,7 +98,12 @@ require "hoe/markdown"
 Hoe::Markdown::Standalone.new("gemname").define_markdown_tasks
 ```
 
-This will attempt to read your gemspec from `#{gemname}.gemspec`, and then the same rake tasks described above are created and behave the same way.
+This will attempt to read your gemspec from `#{gemname}.gemspec`, and then the same rake tasks described above are created and behave the same way. If you have additional files (beyond the files declared in the gemspec), you may pass them into this method:
+
+``` ruby
+require "hoe/markdown"
+Hoe::Markdown::Standalone.new("gemname").define_markdown_tasks("CHANGELOG.md", "CONTRIBUTORS.md")
+```
 
 
 ## Contributing
