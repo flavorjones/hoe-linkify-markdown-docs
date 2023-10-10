@@ -1,5 +1,10 @@
 # Hoe::Markdown CHANGELOG
 
+## v1.5.1 / 2023-10-10
+
+Remove experimental code that was accidentally included in v1.5.0.
+
+
 ## v1.5.0 / 2023-10-10
 
 Feature:
