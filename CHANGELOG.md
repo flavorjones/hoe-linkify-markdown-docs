@@ -1,5 +1,12 @@
 # Hoe::Markdown CHANGELOG
 
+## v1.5.0 / 2023-10-10
+
+Feature:
+
+- use `Bundler.load_gemspec` instead of `eval`, to support Ruby 3.3
+
+
 ## v1.4.0 / 2021-01-18
 
 Feature:
