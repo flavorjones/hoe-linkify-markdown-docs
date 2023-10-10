@@ -6,7 +6,7 @@ class Hoe
       attr_reader :spec
 
       def initialize gem_name
-        @spec = eval(File.read("./#{gem_name}.gemspec"))
+        @spec = Bundler.load_gemspec("#{gem_name}.gemspec")
       end
     end
   end
