@@ -2,6 +2,9 @@ class Hoe
   module Markdown
     module Util
       GITHUB_ISSUE_MENTION_REGEX = %r{
+        # not immediately preceded by a word character
+        (?<!\w)
+
         # issue number, like '#1234'
         \#([[:digit:]]+)
 

@@ -7,12 +7,14 @@ RSpec.describe Hoe::Markdown::Util do
         markdown = <<~MD
           leading
           how about issues #1, #23,#456?
+          but not references like Foo#123 or LH#8
           trailing
         MD
 
         expected = <<~MD
           leading
           how about issues [#1](https://example.com/username/projectname/issues/1), [#23](https://example.com/username/projectname/issues/23),[#456](https://example.com/username/projectname/issues/456)?
+          but not references like Foo#123 or LH#8
           trailing
         MD
 
