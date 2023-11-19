@@ -1,5 +1,12 @@
 # Hoe::Markdown CHANGELOG
 
+## v1.6.0 / 2023-11-19
+
+Fix:
+
+- Do not linkify things like that look like issues when they are part of a word, like "LH#123".
+
+
 ## v1.5.1 / 2023-10-10
 
 Remove experimental code that was accidentally included in v1.5.0.
