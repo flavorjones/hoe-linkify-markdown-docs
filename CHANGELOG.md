@@ -1,5 +1,12 @@
 # Hoe::Markdown CHANGELOG
 
+## v1.7.0 / 2025-01-02
+
+Fix:
+
+- Do not linkify link refs and link ref definitions. #5 @halostatue
+
+
 ## v1.6.0 / 2023-11-19
 
 Fix:
