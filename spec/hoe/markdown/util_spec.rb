@@ -8,14 +8,20 @@ RSpec.describe Hoe::Markdown::Util do
           leading
           how about issues #1, #23,#456?
           but not references like Foo#123 or LH#8
-          trailing
+          trailing [#45][test-#45-test] [#46][#46]
+
+          [#45]: https://github.com/username/projectname/issues/45
+          [#46]: https://github.com/username/projectname/pull/46
         MD
 
         expected = <<~MD
           leading
           how about issues [#1](https://example.com/username/projectname/issues/1), [#23](https://example.com/username/projectname/issues/23),[#456](https://example.com/username/projectname/issues/456)?
           but not references like Foo#123 or LH#8
-          trailing
+          trailing [#45][test-#45-test] [#46][#46]
+
+          [#45]: https://github.com/username/projectname/issues/45
+          [#46]: https://github.com/username/projectname/pull/46
         MD
 
         actual = Hoe::Markdown::Util.linkify_github_issues(markdown, issues_uri)
@@ -106,6 +112,8 @@ RSpec.describe Hoe::Markdown::Util do
         foo @flavorjones and @asdfqwer bar
         foo @y-yagi bar
         trailing
+
+        [@y-yagi]: https://github.com/y-yagi
       MD
 
       expected = <<~MD
@@ -113,6 +121,8 @@ RSpec.describe Hoe::Markdown::Util do
         foo [@flavorjones](https://github.com/flavorjones) and [@asdfqwer](https://github.com/asdfqwer) bar
         foo [@y-yagi](https://github.com/y-yagi) bar
         trailing
+
+        [@y-yagi]: https://github.com/y-yagi
       MD
 
       expect(Hoe::Markdown::Util.linkify_github_usernames(markdown)).to eq(expected)

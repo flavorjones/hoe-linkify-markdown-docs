@@ -57,13 +57,33 @@ class Hoe
         }x
 
         markdown
-          .gsub(GITHUB_ISSUE_MENTION_REGEX, "[#\\1](#{issues_uri}/\\1)")
-          .gsub(issue_uri_regex, "[#\\1](#{issues_uri}/\\1)")
-          .gsub(pull_uri_regex, "[#\\1](#{pull_uri}/\\1)")
+          .gsub(GITHUB_ISSUE_MENTION_REGEX) {
+            __replace_with_link(Regexp.last_match, "[#%<id>s](#{issues_uri}/%<id>s)")
+          }
+          .gsub(issue_uri_regex) {
+            __replace_with_link(Regexp.last_match, "[#%<id>s](#{issues_uri}/%<id>s)")
+          }
+          .gsub(pull_uri_regex) {
+            __replace_with_link(Regexp.last_match, "[#%<id>s](#{pull_uri}/%<id>s)")
+          }
       end
 
       def self.linkify_github_usernames(markdown)
-        markdown.gsub(GITHUB_USER_REGEX, "[@\\1](https://github.com/\\1)")
+        markdown.gsub(GITHUB_USER_REGEX) {
+          __replace_with_link(Regexp.last_match, "[@%<id>s](https://github.com/%<id>s)")
+        }
+      end
+
+      def self.__replace_with_link(match, link)
+        skip =
+          (match.pre_match.end_with?("\n[") && match.post_match =~ /\A\]:\s+.+\n/) ||
+          (match.pre_match =~ /\]\[[^\]]*\z/ && match.post_match =~ /\A[^\]]*\]/)
+
+        if skip
+          match[0]
+        else
+          link % {id: match[1]}
+        end
       end
     end
   end
